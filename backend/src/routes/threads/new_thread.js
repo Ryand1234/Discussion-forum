@@ -23,6 +23,7 @@ async (req, res, next)=>{
 		nthread = {};
 		nthread.topic = req.body.topic;
 		nthread.user = req.session.accessToken;
+		nthread.user_name = req.session.user;
 		nthread.categoty = req.body.category;
 		nthread.id = Math.floor(Math.random()*50000000);
 		nthread.thread = req.body.thread;

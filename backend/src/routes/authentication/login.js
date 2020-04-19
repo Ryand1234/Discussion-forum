@@ -40,6 +40,7 @@ async (req, res, next)=>{
 					else
 					{
 						req.session.accessToken = user.accessToken;
+						req.session.user = user.name;
 						//console.log("User Logged IN");
 						res.status(201).json({"msg" : "User Logged In"});
 					}

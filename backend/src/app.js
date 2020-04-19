@@ -21,6 +21,11 @@ const logoutRoute = require('./routes/authentication/logout');
 //Thread Routes files
 const newThreadRoute = require('./routes/threads/new_thread');
 const allThreadRoute = require('./routes/threads/show_all_thread');
+const threadRoute = require('./routes/threads/single_thread');
+
+
+//Search Routes files
+const categoryRoute = require('./routes/search/thread_by_category');
 
 
 //Authentication Routes
@@ -33,6 +38,11 @@ app.use('/user/logout', logoutRoute);
 //Thread Routes
 app.use('/thread/new', newThreadRoute);
 app.use('/thread/all', allThreadRoute);
+app.use('/thread/', threadRoute);
+
+
+//Search Routes
+app.use('/search/', categoryRoute);
 
 
 //Server
