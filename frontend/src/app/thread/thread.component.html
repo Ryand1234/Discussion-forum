@@ -1,0 +1,33 @@
+<mat-card class="thread">
+	<h3 class="head">{{thread.topic}}</h3>
+	<h5 class="category">Category:   <a href="www.google.com">{{thread.category}}</a></h5>
+	<mat-card-content>
+		<p>{{thread.thread}}</p>
+	</mat-card-content>
+</mat-card>
+
+<mat-card *ngFor="let msg of history" class="comments">
+	<mat-card class="msg">
+		<mat-card-content>
+			<p>{{msg.msg}}</p>
+		</mat-card-content>
+	</mat-card>
+
+	<mat-card-content >
+		<a href="google.com">{{msg.user}}</a>
+		<p>{{msg.date}}</p>
+	</mat-card-content>
+</mat-card>
+
+<mat-card class="ucomment">
+	<mat-card-content>
+				<form>
+					<textarea matInput placeholder="Your Comment" class="txtarea"></textarea> 
+					<button>Post</button>
+				</form>
+	</mat-card-content>
+</mat-card>
+
+
+
+

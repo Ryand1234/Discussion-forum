@@ -1,0 +1,28 @@
+<mat-card class="register">
+	<h3 class="head"> Registeration Form </h3>
+	<mat-card-content>
+		<div class="details">
+			<form (ngSubmit)="onSubmit()" >
+				<mat-form-field>
+					<input matInput placeholder="Name" type="text">
+				</mat-form-field>
+				<br>
+				<mat-form-field>
+					<input matInput placeholder="Email" type="text">
+				</mat-form-field>
+				<br>
+				<mat-form-field>
+					<input matInput placeholder="Password" type="text" >
+				</mat-form-field>
+				<br>
+				<mat-form-field>
+					<input matInput placeholder="Mobile Number" type="text" >
+				</mat-form-field>
+				<br>
+				<mat-form-field>
+					<button>Submit</button>
+				</mat-form-field>
+			</form>
+		</div>
+	</mat-card-content>
+</mat-card>
