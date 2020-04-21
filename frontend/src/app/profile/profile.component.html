@@ -1,4 +1,5 @@
 
+
 <h3>Profile Information</h3>
 <p *ngIf=(msg)>Please Login to see yout Cart</p>
 <h4 *ngIf=(userinfo.msg)>{{userinfo.msg}}</h4>
@@ -14,19 +15,15 @@
 	</tr>
 	<tr>
 		<th>Mobile Number</th>
-		<th>{{userinfo.number}}</th>
-	</tr>
-	<tr> 
-		<th>DOB</th>
-		<th>{{userinfo.dob}}</th>
-	</tr>
-	<tr> 
-		<th>Gender</th>
-		<th>{{userinfo.sex}}</th>
+		<th>{{userinfo.mobile}}</th>
 	</tr>
 	<tr>
 		<th>Email</th>
 		<th>{{userinfo.email}}</th>
 	</tr>
 </table>
+<p> Threads: </p>
+<div *ngFor="let thread of userinfo.thread">
+	<a href="/thread/{{thread._id}}">{{thread.topic}}</a>
+</div>
 

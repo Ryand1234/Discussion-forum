@@ -21,7 +21,7 @@ async (req, res, next)=>{
 	else
 	{
 		//console.log("URL : ",process.env.MONGO_URL);
-		mongo.MongoClient.connect(process.env.MONGO_URL, (err, client)=>{
+		mongo.MongoClient.connect('mongodb://localhost:5000', (err, client)=>{
 			if(err)
 			{
 				//console.log("ERROR: ",err);
@@ -39,10 +39,11 @@ async (req, res, next)=>{
 					}
 					else
 					{
-						req.session.accessToken = user.accessToken;
+						req.session.accessToken = user._id;
+						req.session.threadToken = user.accessToken;
 						req.session.user = user.name;
 						//console.log("User Logged IN");
-						res.status(201).json({"msg" : "User Logged In"});
+						res.status(200).json({"msg" : "User Logged In"});
 					}
 				});
 			}

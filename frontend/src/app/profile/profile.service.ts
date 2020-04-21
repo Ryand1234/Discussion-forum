@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http'
 })
 export class ProfileService {
 
-	private url = '/api/users';
+	private url = '/api/user/profile';
   constructor(private  http : HttpClient) { }
 
 	getProfile(){

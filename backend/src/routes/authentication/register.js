@@ -31,11 +31,12 @@ async (req, res, next) => {
 		nuser.password = req.body.passwd;
 		nuser.mobile = req.body.mobile;
 		nuser.username = req.body.username;
-		nuser.accessToken = Math.floor(Math.random()*5000000);
+		nuser.accessToken = Math.floor(Math.random()*5000000).toString();
 		nuser.threads = new Array();
 		console.log("USER: ",nuser);
 		
-		mongo.MongoClient.connect(process.env.MONGO_URL, (error, client)=>{
+		//console.log(process.env.MONGO_URL);
+		mongo.MongoClient.connect('mongodb://localhost:5000', (error, client)=>{
 			
 			var db = client.db('forum');
 			db.collection('user').insertOne(nuser, (err, user)=>{

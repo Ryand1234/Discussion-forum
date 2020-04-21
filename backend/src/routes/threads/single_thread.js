@@ -1,12 +1,14 @@
 const router = require('express').Router();
 const mongo = require('mongodb');
+const objectId = require('mongodb').ObjectId;
 
 
-router.use('/:id', (req, res, next)=>{
+
+router.get('/:id', (req, res, next)=>{
 
 	const id = req.params.id;
 
-	mongo.MongoClient.connect(process.env.MONGO_URL, (error, client)=>{
+	mongo.MongoClient.connect('mongodb://localhost:5000', (error, client)=>{
 	
 		if(error)
 		{
@@ -16,7 +18,9 @@ router.use('/:id', (req, res, next)=>{
 		{
 			const db = client.db('forum');
 
-			db.collection('thread').findOne({_id : id}, (err, thread)+>{
+			var ObjectId = new objectId(id);
+
+			db.collection('thread').findOne({_id : ObjectId}, (err, thread)=>{
 			
 				if(err)
 				{
@@ -24,12 +28,8 @@ router.use('/:id', (req, res, next)=>{
 				}
 				else
 				{
-					res.status(200).json({
-						"topic" : thread.topic,
-						"user" : thread.user_name,
-						"thread" : thread.thread,
-						"history" : thread.history
-					});
+				//	console.log("THREAD: ",thread);
+					res.status(200).json(thread);
 				}
 			});
 		}

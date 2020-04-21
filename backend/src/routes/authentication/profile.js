@@ -1,9 +1,12 @@
 const router = require('express').Router();
 const mongo = require('mongodb');
+const objectId = require('mongodb').ObjectId;
 
-router.post('/', async (req, res, next)=>{
 
-	mongo.MongoClient.connect(process.env.MONGO_URL, (err, client)=>{
+router.get('/', async (req, res, next)=>{
+
+	console.log("TOKEN: ",req.session.accessToken);
+	mongo.MongoClient.connect('mongodb://localhost:5000', (err, client)=>{
 
 		if(err)
 		{
@@ -13,7 +16,8 @@ router.post('/', async (req, res, next)=>{
 		{
 			var db = client.db('forum');
 
-			db.collection('user').findOne({accessToken : req.session.accessToken}, (error, user)=>{
+
+			db.collection('user').findOne({_id : new objectId(req.session.accessToken)}, (error, user)=>{
 				if(error)
 				{
 					res.status(401).json({"msg" : "Please Login to view profile "});
