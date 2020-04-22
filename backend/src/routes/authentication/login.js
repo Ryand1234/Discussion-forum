@@ -16,7 +16,7 @@ async (req, res, next)=>{
 	{
 		//console.log("Error: ",errors.array());
 		var errors_array = errors.array();
-		res.status(401).json({errors_array});
+		res.status(200).json({errors_array});
 	}
 	else
 	{
@@ -25,7 +25,7 @@ async (req, res, next)=>{
 			if(err)
 			{
 				//console.log("ERROR: ",err);
-				res.status(401).json({"msg" : "Internal Server Error"})
+				res.status(200).json({"msg" : "Internal Server Error"})
 			}
 			else
 			{
@@ -35,15 +35,20 @@ async (req, res, next)=>{
 					if(error)
 					{
 						//console.log("Error: ",error);
-						res.status(401).json({"msg" : "Email/Password incorrect"});
+						res.status(200).json({"msg" : "Email/Password incorrect"});
 					}
 					else
 					{
-						req.session.accessToken = user._id;
-						req.session.threadToken = user.accessToken;
-						req.session.user = user.name;
-						//console.log("User Logged IN");
-						res.status(200).json({"msg" : "User Logged In"});
+						if(user != null)
+						{
+							req.session.accessToken = user._id;
+							req.session.threadToken = user.accessToken;
+							req.session.user = user.name;
+							//console.log("User Logged IN");
+							res.status(200).json({"msg" : "User Logged In"});
+						}
+						else
+							res.status(200).json({"msg" : "Email/Password incorrect"});
 					}
 				});
 			}

@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const mongo = require('mongodb');
 
-router.get('/', async (req, res, next)=>{
+router.post('/', async (req, res, next)=>{
 
 	mongo.MongoClient.connect('mongodb://localhost:5000', (error, client)=>{
 	
 		if(error)
 		{
-			res.status(401).json({"msg" : "Internal Server Error"});
+			res.status(200).json({"msg" : "Internal Server Error"});
 		}
 		else
 		{
@@ -17,11 +17,14 @@ router.get('/', async (req, res, next)=>{
 			
 				if(err)
 				{
-					res.status(401).json({"msg" : "Internal Server Error"});
+					res.status(200).json({"msg" : "Internal Server Error"});
 				}
 				else
 				{
-					res.status(200).json(threads);
+					if(threads == null)
+						res.status(200).json({"msg" : "No thread with given category"});
+					else
+						res.status(200).json(threads);
 				}
 			});
 		}

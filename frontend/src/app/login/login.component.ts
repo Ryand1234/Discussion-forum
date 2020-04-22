@@ -19,7 +19,7 @@ export class LoginComponent {
 	msg: any;
 
   	onSubmit() {
-		console.log("data: ",this.info);
+	//	console.log("data: ",this.info);
 		var login = {
 		email : this.info.value.email,
 		passwd : this.info.value.passwd
@@ -27,7 +27,7 @@ export class LoginComponent {
 
 		this.service.login(login).subscribe((result: any)=>{
 		this.msg = result;}, (err)=>{ this.msg = err});
-		console.log("Error: ",this.msg);
+	//	console.log("Error: ",this.msg);
 	}
 
 }

@@ -22,7 +22,7 @@ export class RegisterComponent {
 	msg: any;
   onSubmit() {
 	
-	console.log("User: ",this.user);	
+	//console.log("User: ",this.user);	
 	var userinfo = new User(this.user.value.username, this.user.value.name, this.user.value.email, this.user.value.passwd, this.user.value.mobile);
 	this.service.register(userinfo).subscribe((result:any)=>{
 	this.msg = result;}, (err)=>{this.msg = err;});

@@ -7,7 +7,7 @@ router.get('/', async (req, res, next)=>{
 	
 		if(error)
 		{
-			res.status(401).json({"msg" : "Internal Server Error"});
+			res.status(200).json({"msg" : "Internal Server Error"});
 		}
 		else
 		{
@@ -17,7 +17,7 @@ router.get('/', async (req, res, next)=>{
 			
 				if(err)
 				{
-					res.status(401).json({"msg" : "Internal Server Error"});
+					res.status(200).json({"msg" : "Internal Server Error"});
 				}
 				else
 				{

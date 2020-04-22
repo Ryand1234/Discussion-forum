@@ -21,7 +21,7 @@ async (req, res, next) => {
 	{
 		//console.log("ERROR: ",errors.array());
 		var error_array = errors.array();
-		res.status(401).json({error_array});
+		res.status(200).json({error_array});
 	}
 	else
 	{
@@ -33,7 +33,7 @@ async (req, res, next) => {
 		nuser.username = req.body.username;
 		nuser.accessToken = Math.floor(Math.random()*5000000).toString();
 		nuser.threads = new Array();
-		console.log("USER: ",nuser);
+		//console.log("USER: ",nuser);
 		
 		//console.log(process.env.MONGO_URL);
 		mongo.MongoClient.connect('mongodb://localhost:5000', (error, client)=>{
@@ -44,7 +44,7 @@ async (req, res, next) => {
 				if(err)
 				{
 					//console.log("Internal Server Error");
-					res.status(401).json({"msg" : "Internal Server Error"});
+					res.status(200).json({"msg" : "Internal Server Error"});
 				}
 				else
 				{

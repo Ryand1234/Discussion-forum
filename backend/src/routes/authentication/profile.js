@@ -5,12 +5,12 @@ const objectId = require('mongodb').ObjectId;
 
 router.get('/', async (req, res, next)=>{
 
-	console.log("TOKEN: ",req.session.accessToken);
+	//console.log("TOKEN: ",req.session.accessToken);
 	mongo.MongoClient.connect('mongodb://localhost:5000', (err, client)=>{
 
 		if(err)
 		{
-			res.status(401).json({"msg" : "Internal Server Error"});
+			res.status(200).json({"msg" : "Internal Server Error"});
 		}
 		else
 		{
@@ -20,11 +20,14 @@ router.get('/', async (req, res, next)=>{
 			db.collection('user').findOne({_id : new objectId(req.session.accessToken)}, (error, user)=>{
 				if(error)
 				{
-					res.status(401).json({"msg" : "Please Login to view profile "});
+					res.status(200).json({"msg" : "Please Login to view profile "});
 				}
 				else
 				{
-					res.status(200).json(user);
+					if(user == null)
+						res.status(200).json({"msg" : "Please Login to view profile"});
+					else
+						res.status(200).json(user);
 				}
 			});
 		}

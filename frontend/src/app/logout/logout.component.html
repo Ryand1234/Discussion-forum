@@ -1,2 +1,3 @@
 <h3 class="head"> Do you want to LogOut? </h3>
-<button> Logout </button>
+<button (click)="onSubmit()"> Logout </button>
+<p *ngIf="(msg)">{{msg.msg}}</p>

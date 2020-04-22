@@ -12,7 +12,7 @@ router.get('/:id', (req, res, next)=>{
 	
 		if(error)
 		{
-			res.status(401).json({"msg" : "Internal Server Error"});
+			res.status(200).json({"msg" : "Internal Server Error"});
 		}
 		else
 		{
@@ -24,7 +24,7 @@ router.get('/:id', (req, res, next)=>{
 			
 				if(err)
 				{
-					res.status(401).json({"msg" : "Cannot find requested thread"});
+					res.status(200).json({"msg" : "Cannot find requested thread"});
 				}
 				else
 				{

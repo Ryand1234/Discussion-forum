@@ -1,10 +1,9 @@
 
 
 <h3>Profile Information</h3>
-<p *ngIf=(msg)>Please Login to see yout Cart</p>
 <h4 *ngIf=(userinfo.msg)>{{userinfo.msg}}</h4>
 
-<table *ngIf="(userinfo)">
+<table *ngIf="(userinfo.name != null)">
 	<tr>
 		<th>Index</th>
 		<th>Detail</th>
@@ -22,7 +21,7 @@
 		<th>{{userinfo.email}}</th>
 	</tr>
 </table>
-<p> Threads: </p>
+<p *ngIf="(userinfo.name != null)"> Threads: </p>
 <div *ngFor="let thread of userinfo.thread">
 	<a href="/thread/{{thread._id}}">{{thread.topic}}</a>
 </div>
