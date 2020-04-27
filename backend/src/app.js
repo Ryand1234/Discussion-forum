@@ -30,6 +30,9 @@ const profileRoute = require('./routes/authentication/profile');
 const logoutRoute = require('./routes/authentication/logout');
 
 
+//Public Profile
+const pubProfileRoute = require('./routes/authentication/public_profile')
+
 //Thread Routes files
 const newThreadRoute = require('./routes/threads/new_thread');
 const allThreadRoute = require('./routes/threads/show_all_thread');
@@ -46,6 +49,7 @@ app.use('/user/register', registerRoute);
 app.use('/user/login', loginRoute);
 app.use('/user/profile', profileRoute);
 app.use('/user/logout', logoutRoute);
+app.use('/user/', pubProfileRoute);
 
 
 //Thread Routes

@@ -8,6 +8,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NewThreadComponent } from './thread/new-thread/new-thread.component';
 import { SingleThreadComponent } from './thread/single-thread/single-thread.component';
+import { PublicProfileComponent } from './public-profile/public-profile.component';
 
 const routes: Routes = [
 { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -15,6 +16,7 @@ const routes: Routes = [
 { path: 'login', component: LoginComponent },
 { path: 'profile', component: ProfileComponent },
 { path: 'home', component: ThreadComponent },
+{ path: 'user/:token', component: PublicProfileComponent },
 { path: 'thread/new', component: NewThreadComponent },
 { path: 'thread/:id', component: SingleThreadComponent },
 { path: 'search', component: SearchComponent },
