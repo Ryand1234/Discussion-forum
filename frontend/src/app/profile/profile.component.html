@@ -23,7 +23,7 @@
 		</table>
 		<p id="threads" *ngIf="(userinfo.name != null)"> Threads: </p>
 		<div *ngFor="let thread of userinfo.thread">
-			<a href="/thread/{{thread._id}}">{{thread.topic}}</a>
+			<a href="/thread/{{thread.id}}">{{thread.topic}}</a>
 		</div>
 		<p>------------------------------------------------------------------------------------</p>
 		<a href="/threads">Edit Profile</a>

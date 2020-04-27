@@ -50,7 +50,7 @@ async (req, res, next)=>{
 						}
 						else
 						{
-							console.log("TOKEN :",req.session.accessToken);
+							console.log("THERAD: ",thread)
 							db.collection('user').findOne({_id : new objectId(req.session.accessToken)}, (errorUser, user)=>{
 							
 								if(errorUser)
@@ -60,12 +60,12 @@ async (req, res, next)=>{
 								//user.thread.push(nthread);
 								if(user.thread == undefined)
 								{
-									 nhistory = [nthread];
+									 nhistory = [thread.ops[0]._id];
 								}
 								else
 								{
 									nhistory = user.thread;
-									nhistory.push(nthread);
+									nhistory.push(thread.ops[0]._id);
 								}
 	
 								var query = {
