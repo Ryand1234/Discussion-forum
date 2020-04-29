@@ -31,12 +31,10 @@ export class SingleThreadComponent implements OnInit {
   	ngOnInit(): void {
 		var url = this.router.url;
 		this.token = url.split('/')[2];
-		//console.log("token; ",token);
-		
+
 		this.service.getThread(this.token).subscribe((result: any)=>{
 		
 			this.thread = result;
-	//		console.log("HIS: ",this.thread.history);
 		this.history = this.thread.history;
 		},
 		(err)=>{
@@ -46,14 +44,10 @@ export class SingleThreadComponent implements OnInit {
 
 	}
 
-	//history:any = this.thread.history;
-	//msg: any;
-
 	output: any;
 
 	onSubmit() {
 
-//	console.log("POST: ",this.post)
 	var data = {
 	  "txt" : this.post.value.txt
 	}
@@ -67,6 +61,18 @@ export class SingleThreadComponent implements OnInit {
 		else
 			this.msg = result;
 	}, (err)=>{this.msg = err;});
-	//console.log("HIS#: ",this.history);
+
+	}
+
+	
+	like(id: string){
+		console.log("HEllo");
 	}	
+
+	
+	dislike(id : string){
+
+		console.log("BYE");
+	}
+
 }

@@ -28,7 +28,6 @@ router.get('/:id', (req, res, next)=>{
 				}
 				else
 				{
-				//	console.log("THREAD: ",thread);
 					res.status(200).json(thread);
 				}
 			});

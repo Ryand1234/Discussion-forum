@@ -31,6 +31,8 @@ async (req, res, next)=>{
 			nthread.category = req.body.category;
 			nthread.thread = req.body.thread;
 			nthread.history = [];
+			nthread.likes = 0;
+			nthread.dislikes = 0;
 
 
 			mongo.MongoClient.connect('mongodb://localhost:5000', (error, client)=>{

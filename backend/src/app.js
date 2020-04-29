@@ -33,11 +33,14 @@ const logoutRoute = require('./routes/authentication/logout');
 //Public Profile
 const pubProfileRoute = require('./routes/authentication/public_profile')
 
+
 //Thread Routes files
 const newThreadRoute = require('./routes/threads/new_thread');
 const allThreadRoute = require('./routes/threads/show_all_thread');
 const threadRoute = require('./routes/threads/single_thread');
 const commentRoute = require('./routes/threads/comment');
+const likeRoute = require('./routes/threads/like_thread');
+const dislikeRoute = require('./routes/threads/dislike_thread');
 
 
 //Search Routes files
@@ -57,6 +60,8 @@ app.use('/thread/new', newThreadRoute);
 app.use('/thread/all', allThreadRoute);
 app.use('/thread/', threadRoute);
 app.use('/thread/comment', commentRoute);
+app.use('/thread/like/', likeRoute);
+app.use('/thread/dislike/', dislikeRoute)
 
 
 //Search Routes

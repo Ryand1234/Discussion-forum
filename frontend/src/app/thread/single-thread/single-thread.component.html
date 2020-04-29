@@ -1,6 +1,8 @@
 <mat-card class="thread">
 	<h3 class="head">{{thread.topic}}</h3>
 	<h5 class="category">Category:   <a href="www.google.com">{{thread.category}}</a></h5>
+	<p class="dis"><button class="lik" (click)="like(thread._id)"> Likes</button>: {{thread.likes}}</p>
+	<p class="dis"><button class="lik" (click)="dislike(thread._id)"> Dislikes</button>: {{thread.Dislikes}}</p>
 	<mat-card-content>
 		<p>{{thread.thread}}</p>
 	</mat-card-content>
@@ -24,7 +26,7 @@
 	<mat-card-content>
 				<form (ngSubmit)="onSubmit()" [formGroup]="post">
 					<textarea matInput formControlName="txt" placeholder="Your Comment" class="txtarea"></textarea> 
-					<button>Post</button>
+					<button class="post">Post</button>
 				</form>
 	</mat-card-content>
 </mat-card>
