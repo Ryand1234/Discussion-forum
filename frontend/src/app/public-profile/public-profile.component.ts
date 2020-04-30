@@ -19,7 +19,9 @@ export class PublicProfileComponent implements OnInit {
 
 	var url = this.router.url
 	var token = url.split('/')[2]
-        this.service.getProfile(token).subscribe((result)=>{ this.userinfo = result}, (error)=>{
+	this.service.getProfile(token).subscribe((result)=>{ this.userinfo = result
+	console.log("USER: ",this.userinfo);
+}, (error)=>{
   this.msg = error
   });
 

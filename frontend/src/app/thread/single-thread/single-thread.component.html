@@ -1,11 +1,12 @@
 <mat-card class="thread">
 	<h3 class="head">{{thread.topic}}</h3>
 	<h5 class="category">Category:   <a href="www.google.com">{{thread.category}}</a></h5>
-	<p class="dis"><button class="lik" (click)="like(thread._id)"> Likes</button>: {{thread.likes}}</p>
-	<p class="dis"><button class="lik" (click)="dislike(thread._id)"> Dislikes</button>: {{thread.Dislikes}}</p>
 	<mat-card-content>
-		<p>{{thread.thread}}</p>
-	</mat-card-content>
+                <p>{{thread.thread}}</p>
+        </mat-card-content>
+	<p class="dis"><button class="lik" (click)="like(thread._id)"> Likes</button>: {{thread.likes}}  
+	<button class="lik" (click)="dislike(thread._id)"> Dislikes</button>: {{thread.dislikes}}</p>
+
 </mat-card>
 
 <mat-card *ngFor="let msg of history" class="comments">

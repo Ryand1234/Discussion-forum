@@ -5,6 +5,8 @@ import { GetThreadService } from './get-thread.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PostService } from './post.service';
+import { LikeDislikeService } from './like-dislike.service';
+
 
 
 @Component({
@@ -25,7 +27,8 @@ export class SingleThreadComponent implements OnInit {
 	history : any ;
 	constructor(private service : GetThreadService,
 		    private router : Router,
-		    private postService : PostService) { }
+		    private postService : PostService,
+		    private likdisService : LikeDislikeService) { }
 
 	token: string;
   	ngOnInit(): void {
@@ -66,13 +69,33 @@ export class SingleThreadComponent implements OnInit {
 
 	
 	like(id: string){
-		console.log("HEllo");
+		this.likdisService.like(id).subscribe((result : any)=>{
+		this.output = result;
+		if(this.output.msg == undefined)
+		{
+			this.thread = result;
+			this.history = this.thread.history;
+		}
+		else
+			this.msg = result;
+		},(err) => {this.msg = err;});
+
 	}	
 
 	
 	dislike(id : string){
 
-		console.log("BYE");
+		this.likdisService.dislike(id).subscribe((result : any)=>{
+                this.output = result;
+                if(this.output.msg == undefined)
+                {
+                        this.thread = result;
+			this.history = this.thread.history;
+			console.log("TH: ",this.thread);
+                }
+                else
+                        this.msg = result;
+                },(err) => {this.msg = err;});
 	}
 
 }
