@@ -9,12 +9,15 @@ import { ProfileComponent } from './profile/profile.component';
 import { NewThreadComponent } from './thread/new-thread/new-thread.component';
 import { SingleThreadComponent } from './thread/single-thread/single-thread.component';
 import { PublicProfileComponent } from './public-profile/public-profile.component';
+import { UpdateComponent } from './profile/update/update.component';
+
 
 const routes: Routes = [
 { path: '', redirectTo: 'home', pathMatch: 'full'},
 { path: 'register', component: RegisterComponent },
 { path: 'login', component: LoginComponent },
 { path: 'profile', component: ProfileComponent },
+{ path: 'profile/edit', component: UpdateComponent },
 { path: 'home', component: ThreadComponent },
 { path: 'user/:token', component: PublicProfileComponent },
 { path: 'thread/new', component: NewThreadComponent },

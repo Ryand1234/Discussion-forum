@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NewThreadComponent } from './thread/new-thread/new-thread.component';
 import { SingleThreadComponent } from './thread/single-thread/single-thread.component';
 import { PublicProfileComponent } from './public-profile/public-profile.component';
+import { UpdateComponent } from './profile/update/update.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PublicProfileComponent } from './public-profile/public-profile.componen
     LogoutComponent,
     NewThreadComponent,
     SingleThreadComponent,
-    PublicProfileComponent
+    PublicProfileComponent,
+    UpdateComponent
   ],
   imports: [
     ReactiveFormsModule,

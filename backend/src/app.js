@@ -28,6 +28,7 @@ const registerRoute = require('./routes/authentication/register');
 const loginRoute = require('./routes/authentication/login');
 const profileRoute = require('./routes/authentication/profile');
 const logoutRoute = require('./routes/authentication/logout');
+const updateRoute = require('./routes/authentication/update_profile');
 
 
 //Public Profile
@@ -53,6 +54,7 @@ app.use('/user/login', loginRoute);
 app.use('/user/profile', profileRoute);
 app.use('/user/logout', logoutRoute);
 app.use('/user/', pubProfileRoute);
+app.use('/user/update', updateRoute);
 
 
 //Thread Routes
