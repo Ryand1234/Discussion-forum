@@ -21,7 +21,7 @@ export class UpdateComponent {
   onSubmit() {
 	
 	//console.log("User: ",this.user);	
-		var userinfo = {};
+		var userinfo : any;
 
 		if (this.user.value.username != undefined)
 			userinfo.username = this.user.value.username;
