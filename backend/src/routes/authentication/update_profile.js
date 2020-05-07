@@ -15,24 +15,12 @@ router.post('/', async (req, res, next) => {
 	else
 	{
 
-		//Changes in Profile
-		nuser = {};
-		
-		if (req.body.name != undefined)
-			nuser.name = req.body.name;
-	
-		if (req.body.mobile != undefined)
-			nuser.mobile = req.body.mobile;
-	
-		if (req.body.username != undefined)
-			nuser.username = req.body.username;
-
 
 		//Database Connection
 		mongo.MongoClient.connect('mongodb://localhost:5000', (error, client)=>{
 			
 			var db = client.db('forum');
-			db.collection('user').findOne({_id : req.session.accessToken}, (err, user)=>{
+			db.collection('user').findOne({_id : new mongo.ObjectId(req.session.accessToken)}, (err, user)=>{
 				
 				if(err)
 				{
@@ -41,8 +29,33 @@ router.post('/', async (req, res, next) => {
 				}
 				else
 				{
+					//changes in Profile
+
+					var name,username,mobile;
+					if(req.body.name != undefined)
+						name = req.body.name;
+					else
+						name = user.name;
+
+					if(req.body.username != undefined)
+						username = req.body.username;
+					else
+						username = user.username
+
+					if(req.body.mobile != undefined)
+						mobile = req.body.mobile
+					else
+						mobile = user.mobile
+
 					//console.log("User Registered");
-					db.collection('user').updateOne({_id : req.session.accessToken}, { $set: nuser }, (error, update)=>{
+					var query = {
+						$set : {
+							name : name,
+							username : username,
+							mobile : mobile
+						}
+					}
+					db.collection('user').updateOne({_id : new mongo.ObjectId(req.session.accessToken)}, query, (error, update)=>{
 					
 						if(error)
 							res.status(200).json({"msg" : "Internal Server Error"});

@@ -1,5 +1,5 @@
 <mat-card class="update-profile">
-	<h3 class="head"> Registeration Form </h3>
+	<h3 class="head"> Update Profile </h3>
 	<p *ngIf="(msg)">{{msg.msg}}</p>
 	<mat-card-content>
 		<div class="details">
@@ -17,7 +17,7 @@
 				</mat-form-field>
 				<br>
 				<mat-form-field>
-					<button>Submit</button>
+					<button (onclick)="onSubmit()" >Submit</button>
 				</mat-form-field>
 			</form>
 		</div>

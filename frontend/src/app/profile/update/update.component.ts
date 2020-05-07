@@ -20,18 +20,21 @@ export class UpdateComponent {
 	msg: any;
   onSubmit() {
 	
-	//console.log("User: ",this.user);	
-		var userinfo : any;
+//	console.log("User: ",this.user);	
+		var userinfo : any={};
 
-		if (this.user.value.username != undefined)
+		if (this.user.value.username != ''){
 			userinfo.username = this.user.value.username;
-		if (this.user.value.name != undefined)
+		}
+		if (this.user.value.name != ''){
 			userinfo.name = this.user.value.name;
-		if (this.user.value.mobile)
+		}
+		if (this.user.value.mobile != ''){
 			userinfo.mobile = this.user.value.mobile;
+		}
 
 		console.log("user: ",userinfo);
-		/*this.service.register(userinfo).subscribe((result:any)=>{
-		this.msg = result;}, (err)=>{this.msg = err;});*/
+		this.service.register(userinfo).subscribe((result:any)=>{
+		this.msg = result;}, (err)=>{this.msg = err;});
 	  }
 }
