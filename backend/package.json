@@ -1,10 +1,10 @@
 {
   "name": "forum-backend",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "backend for discussion forum",
   "main": "app.js",
   "scripts": {
-    "start": "node src/app.js > .discuss_backend.log 2>&1",
+    "start": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "riyan",
