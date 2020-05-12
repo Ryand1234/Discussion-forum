@@ -1,0 +1,37 @@
+<mat-card class="thread">
+	<h3 class="head">{{thread.topic}}</h3>
+	<h5 class="category">Category:   <a href="www.google.com">{{thread.category}}</a></h5>
+	<mat-card-content>
+                <p>{{thread.thread}}</p>
+        </mat-card-content>
+	<p class="dis"><button class="lik" (click)="like(thread._id)"> Likes</button>: {{thread.likes}}  
+	<button class="lik" (click)="dislike(thread._id)"> Dislikes</button>: {{thread.dislikes}}</p>
+
+</mat-card>
+
+<mat-card *ngFor="let msg of history" class="comments">
+	<mat-card class="msg">
+		<mat-card-content>
+			<p *ngIf="msg.comment != null">{{msg.comment}}</p>
+		</mat-card-content>
+	</mat-card>
+
+	<mat-card-content >
+		<a href="/user/{{msg.userToken}}" *ngIf="msg.user != null">{{msg.user}}</a>
+		<p>{{msg.date}}</p>
+	</mat-card-content>
+</mat-card>
+
+<mat-card class="ucomment">
+	<p *ngIf="(msg)">{{msg.msg}}</p>
+	<mat-card-content>
+				<form (ngSubmit)="onSubmit()" [formGroup]="post">
+					<textarea matInput formControlName="txt" placeholder="Your Comment" class="txtarea"></textarea> 
+					<button class="post">Post</button>
+				</form>
+	</mat-card-content>
+</mat-card>
+
+
+
+

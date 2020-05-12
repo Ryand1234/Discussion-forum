@@ -1,0 +1,21 @@
+.thread {
+	text-align : center;
+}
+
+.head {
+	background-color : orange;
+}
+
+form {
+	background-color : lightgrey;
+}
+
+textarea {
+	width: 140%;
+	float: left;
+	height: 100px;
+	box-sizing: border-box;
+	resize: none;
+	border: 2px solid lightgrey;
+}
+
