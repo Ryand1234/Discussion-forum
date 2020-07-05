@@ -1,0 +1,24 @@
+a {
+        text-decoration : none;
+        color : black;
+        color: green;
+}
+
+.profile-main {
+        margin: 1em;
+        background-color: cyan;
+        text-align: center;
+}
+
+.profile-details {
+        text-align: center;
+}
+
+#threads {
+        font-weight : bold;
+}
+
+.user-details {
+	margin-left: auto;
+	margin-right: auto;
+}

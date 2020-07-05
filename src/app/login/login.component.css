@@ -1,0 +1,16 @@
+.login-main {
+	text-align : center;
+	border : 8cm;
+	padding : 5em;
+	background-color: cyan;
+}
+
+.details {
+	
+	background-color : lightgrey;
+}
+
+.head {
+	font-size : 2em;
+	background-color : orange;
+}

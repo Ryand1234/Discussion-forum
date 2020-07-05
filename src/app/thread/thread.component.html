@@ -1,0 +1,6 @@
+<mat-card *ngFor="let post of thread" class="thread-main">
+	<mat-card-content class="thread-body">
+		<a href="/thread/{{post._id}}" class="thread-name">{{post.topic}}</a>
+		<p class="thread-author">Author: <a href="/user/{{post.user}}" class="thread-author">{{post.user_name}}</a></p>
+	</mat-card-content>
+</mat-card>

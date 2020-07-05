@@ -1,0 +1,24 @@
+.thread-new-main {
+	text-align : center;
+	background-color: cyan;
+}
+
+.thread-new-head {
+	background-color : orange;
+}
+
+.thread-new-create {
+	background-color : lightgrey;
+}
+
+textarea {
+	width: 140%;
+	float: left;
+	height: 100px;
+	box-sizing: border-box;
+	resize: none;
+	border: 2px solid lightgrey;
+}
+
+
+

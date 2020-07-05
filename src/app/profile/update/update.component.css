@@ -1,0 +1,16 @@
+.update-profile {
+	text-align : center;
+	border : 8cm;
+	padding : 5em;
+	background-color: cyan;
+}
+
+.details {
+	
+	background-color : lightgrey;
+}
+
+.head {
+	font-size : 1.5em;
+	background-color : orange;
+}

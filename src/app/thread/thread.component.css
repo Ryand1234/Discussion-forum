@@ -1,0 +1,32 @@
+a {
+	text-decoration : none;
+	color : black;
+	text-size : 1.5em;
+}
+
+.thread-main {
+	background-color: cyan;
+	text-align: center;
+}
+
+.thread-author{
+	color: green;
+}
+
+.thread-author:hover {
+	transform: skewX(20deg);
+	font-style: italic;
+	color: green;
+	background-color: lightblue;
+}
+
+.thread-name {
+	color: red;
+}
+
+.thread-name:hover{
+	transform: skewX(20deg);
+	font-style: italic;
+	color: green;
+	background-color: lightblue;
+}
