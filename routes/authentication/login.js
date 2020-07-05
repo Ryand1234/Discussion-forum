@@ -1,8 +1,9 @@
-#!/usr/bin/env node
 const router = require('express').Router();
 const mongo = require('mongodb');
 const session = require('express-session');
 const {check, validationResult} = require('express-validator');
+
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
 
 router.post('/', 
 [
@@ -14,17 +15,14 @@ async (req, res, next)=>{
 	const errors = validationResult(req);
 	if(!errors.isEmpty())
 	{
-		//console.log("Error: ",errors.array());
 		var errors_array = errors.array();
-		res.status(200).json({errors_array});
+		res.status(501).json({errors_array});
 	}
 	else
 	{
-		//console.log("URL : ",process.env.MONGO_URL);
-		mongo.MongoClient.connect('mongodb://localhost:5000', (err, client)=>{
+		mongo.MongoClient.connect(MONGO_URI, (err, client)=>{
 			if(err)
 			{
-				//console.log("ERROR: ",err);
 				res.status(200).json({"msg" : "Internal Server Error"})
 			}
 			else
@@ -44,7 +42,7 @@ async (req, res, next)=>{
 							req.session.accessToken = user._id;
 							req.session.threadToken = user.accessToken;
 							req.session.user = user.name;
-							//console.log("User Logged IN");
+				
 							res.status(200).json({"msg" : "User Logged In"});
 						}
 						else

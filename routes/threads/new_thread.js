@@ -3,6 +3,8 @@ const mongo = require('mongodb');
 const {check, validationResult} = require('express-validator');
 const objectId = require('mongodb').ObjectId;
 
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
+
 router.post('/',
 [
 	check('topic').isLength({min : 3}),
@@ -35,7 +37,7 @@ async (req, res, next)=>{
 			nthread.dislikes = 0;
 
 
-			mongo.MongoClient.connect('mongodb://localhost:5000', (error, client)=>{
+			mongo.MongoClient.connect(MONGO_URI, (error, client)=>{
 				if(error)
 				{
 					res.status(200).json({"msg" : "Internal Server Error"});

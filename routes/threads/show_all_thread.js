@@ -1,9 +1,11 @@
 const router = require('express').Router();
 const mongo = require('mongodb');
 
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
+
 router.get('/', async (req, res, next)=>{
 
-	mongo.MongoClient.connect('mongodb://localhost:5000', (error, client)=>{
+	mongo.MongoClient.connect(MONGO_URI, (error, client)=>{
 	
 		if(error)
 		{

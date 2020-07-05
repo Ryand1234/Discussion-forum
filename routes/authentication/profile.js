@@ -2,11 +2,11 @@ const router = require('express').Router();
 const mongo = require('mongodb');
 const objectId = require('mongodb').ObjectId;
 
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
 
 router.get('/', async (req, res, next)=>{
 
-	//console.log("TOKEN: ",req.session.accessToken);
-	mongo.MongoClient.connect('mongodb://localhost:5000', (err, client)=>{
+	mongo.MongoClient.connect(MONGO_URI, (err, client)=>{
 
 		if(err)
 		{

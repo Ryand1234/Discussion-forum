@@ -48,7 +48,7 @@ const categoryRoute = require('./routes/search/thread_by_category');
 
 
 //For Other Paths
-app.get('/', function(req, res) {
+app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, '/dist/frontend/index.html'));
 });
 
@@ -84,10 +84,6 @@ mongoose.connect("mongodb://localhost:5000/ecommerce",{ useUnifiedTopology: true
 		}
 	});
 
-var db = mongoose.connection;
-
-db.on('error.name', console.error.bind(console.name, 'Mongodb connection error'));
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -108,6 +104,6 @@ app.use(function(err, req, res, next) {
 
 
 //Server
-app.listen(3000, () => console.log('Server Running on port 3000'));
+app.listen(process.env.PORT || 3000, () => console.log(`Server Running on port ${process.env.PORT || 3000}`));
 
 

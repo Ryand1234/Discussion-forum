@@ -3,6 +3,7 @@ const mongo = require('mongodb');
 const objectId = require('mongodb').ObjectId;
 const {check, validationResult} = require('express-validator');
 
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
 
 router.post('/:token', 
 [
@@ -18,7 +19,7 @@ async (req, res, next)=>{
 			res.status(200).json({"msg" : "Text Cannot be empty"});
 		else
 		{
-			mongo.MongoClient.connect('mongodb://localhost:5000', (error, client)=>{
+			mongo.MongoClient.connect(MONGO_URI, (error, client)=>{
 			
 				if(error)
 					res.status(200).json({"msg" : "Internal Server Error"});
@@ -27,9 +28,7 @@ async (req, res, next)=>{
 	
 				db.collection('thread').findOne({_id : new objectId(token)}, (err, thread)=>{
 				
-				// thread.history.user.push(req.session.user);
-				// thread.history.comment.push(req.body.txt);
-
+			
 					var nhistory = {
 						user : req.session.user,
 						comment : req.body.txt,
