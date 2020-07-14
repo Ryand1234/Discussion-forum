@@ -32,7 +32,6 @@ async (req, res, next)=>{
 			
 					if(error)
 					{
-						//console.log("Error: ",error);
 						res.status(200).json({"msg" : "Email/Password incorrect"});
 					}
 					else
