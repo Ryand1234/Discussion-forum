@@ -53,28 +53,28 @@ app.get('/*', function(req, res) {
 });
 
 //Authentication Routes
-app.use('/user/register', registerRoute);
-app.use('/user/login', loginRoute);
-app.use('/user/profile', profileRoute);
-app.use('/user/logout', logoutRoute);
-app.use('/user/', pubProfileRoute);
-app.use('/user/update', updateRoute);
+app.use('/api/user/register', registerRoute);
+app.use('/api/user/login', loginRoute);
+app.use('/api/user/profile', profileRoute);
+app.use('/api/user/logout', logoutRoute);
+app.use('/api/user/', pubProfileRoute);
+app.use('/api/user/update', updateRoute);
 
 
 //Thread Routes
-app.use('/thread/new', newThreadRoute);
-app.use('/thread/all', allThreadRoute);
-app.use('/thread/', threadRoute);
-app.use('/thread/comment', commentRoute);
-app.use('/thread/like/', likeRoute);
-app.use('/thread/dislike/', dislikeRoute)
+app.use('/api/thread/new', newThreadRoute);
+app.use('/api/thread/all', allThreadRoute);
+app.use('/api/thread/', threadRoute);
+app.use('/api/thread/comment', commentRoute);
+app.use('/api/thread/like/', likeRoute);
+app.use('/api/thread/dislike/', dislikeRoute)
 
 
 //Search Routes
-app.use('/search/', categoryRoute);
+app.use('/api/search/', categoryRoute);
 
 
-mongoose.connect("mongodb://localhost:5000/ecommerce",{ useUnifiedTopology: true, useNewUrlParser: true}, (err,db)=>{
+mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:5000/ecommerce",{ useUnifiedTopology: true, useNewUrlParser: true}, (err,db)=>{
 	if(err){
 		console.log("ERROR: ",err);
 	}else{
