@@ -10,7 +10,6 @@ export class NewService {
 	constructor(private http : HttpClient) { }
 	
 	create(thread: any) {
-		//console.log("thread: ",thread);
 		return this.http.post(this.url, thread);
 	}
 }

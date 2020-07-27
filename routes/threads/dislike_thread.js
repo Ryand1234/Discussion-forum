@@ -3,7 +3,7 @@ const mongo = require('mongodb')
 
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
 
-router.get('/:id', async (req, res, next)=>{
+router.post('/:id', async (req, res, next)=>{
 
 	if(req.session.accessToken == undefined)
 		res.status(200).json({"msg" : "Please Log in to dislike a post"});

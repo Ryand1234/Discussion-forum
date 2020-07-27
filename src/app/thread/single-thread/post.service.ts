@@ -14,8 +14,6 @@ export class PostService {
 
 	 comment(token: string, data: any) {
                 var nurl = this.url + token;
-		//console.log("URL : ",nurl);
-		//console.log("DATA: ",data);
                 return this.http.post(nurl, data);
         }
 

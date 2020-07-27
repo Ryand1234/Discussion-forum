@@ -4,7 +4,7 @@ const objectId = require('mongodb').ObjectId;
 
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
 
-router.get('/:id', (req, res, next)=>{
+router.post('/:id', (req, res, next)=>{
 
 	const id = req.params.id;
 
