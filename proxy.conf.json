@@ -1,6 +1,5 @@
 {
   "/api/*": {
-    "target": "https://discuss-forum.herokuapp.com/",
-    "pathRewrite": {"^/api" : ""}
+    "target": "http://localhost:3000/"
   }
 }

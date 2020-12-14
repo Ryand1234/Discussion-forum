@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const session = require('express-session');
 
-router.use('/', (req, res, next)=>{
+router.get('/', (req, res, next)=>{
 	
 	req.session.destroy((err) => {
 		

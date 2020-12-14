@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var createError = require('http-errors');
 var mongoose = require('mongoose');
-
+require('dotenv').config();
 
 
 const app = express();
@@ -47,11 +47,11 @@ const dislikeRoute = require('./routes/threads/dislike_thread');
 const categoryRoute = require('./routes/search/thread_by_category');
 
 
-//For Other Paths
+/*//For Other Paths
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, '/dist/frontend/index.html'));
 });
-
+*/
 //Authentication Routes
 app.use('/api/user/register', registerRoute);
 app.use('/api/user/login', loginRoute);

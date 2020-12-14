@@ -3,7 +3,7 @@ const mongo = require('mongodb');
 
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
 
-router.post('/', async (req, res, next)=>{
+router.get('/', async (req, res, next)=>{
 
 	mongo.MongoClient.connect(MONGO_URI, (error, client)=>{
 	

@@ -2,17 +2,6 @@ body {
 	background-color : black;
 }
 
-.forum-head {
-	color: white;
-	text-shadow: 4px 4px 4px grey;
-	text-align: center;
-	font-size: 45px;
-}
-
-.toolbar {
-	background-color: red;
-}
-
 button{
 	background-color: lightgreen;
 	color: black;

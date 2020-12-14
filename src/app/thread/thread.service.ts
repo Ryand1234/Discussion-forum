@@ -15,7 +15,7 @@ export class ThreadService {
 
 	getThreads() {
 		
-		return this.http.post(this.url, { headers: this.httpOptions, responseType: 'json'});
+		return this.http.get(this.url, { headers: this.httpOptions, responseType: 'json'});
 	}
 
 
