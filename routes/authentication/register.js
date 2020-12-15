@@ -3,7 +3,7 @@ const router = express.Router();
 const {check, validationResult} = require('express-validator');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const mongo = require('mongodb');
+const { MongoClient } = require('mongodb');
 
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
 
@@ -17,12 +17,11 @@ router.post('/',
 ],
 async (req, res, next) => {
 
-		const errors = validationResult(req);
+	const errors = validationResult(req);
 	if(!errors.isEmpty())
 	{
-		//console.log("ERROR: ",errors.array());
 		var error_array = errors.array();
-		res.status(200).json({error_array});
+		res.status(500).json({error_array});
 	}
 	else
 	{
@@ -35,19 +34,17 @@ async (req, res, next) => {
 		nuser.accessToken = Math.floor(Math.random()*5000000).toString();
 		nuser.threads = new Array();
 
-		mongo.MongoClient.connect(MONGO_URI, (error, client)=>{
+		MongoClient.connect(MONGO_URI, (error, client)=>{
 			
 			var db = client.db('forum');
 			db.collection('user').insertOne(nuser, (err, user)=>{
 				
 				if(err)
 				{
-					//console.log("Internal Server Error");
-					res.status(200).json({"msg" : "Internal Server Error"});
+					res.status(500).json({"msg" : "Internal Server Error"});
 				}
 				else
 				{
-					//console.log("User Registered");
 					res.status(200).json({"msg" : "User Registered"});
 				}
 			});

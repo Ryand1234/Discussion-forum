@@ -78,8 +78,7 @@ mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:5000/ecommerce",{
 	if(err){
 		console.log("ERROR: ",err);
 	}else{
-		console.log("CONNECTED");
-		console.log(db.readyState);
+		console.log("DATABASE CONNECTED");
 		db.close();
 		}
 	});

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const mongo = require('mongodb');
+const { MongoClient } = require('mongodb');
 const objectId = require('mongodb').ObjectId;
 
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
@@ -7,11 +7,11 @@ const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
 router.get('/:id', async (req, res, next)=>{
 
 
-	mongo.MongoClient.connect(MONGO_URI, (err, client)=>{
+	MongoClient.connect(MONGO_URI, (err, client)=>{
 
 		if(err)
 		{
-			res.status(200).json({"msg" : "Internal Server Error"});
+			res.status(500).json({"msg" : "Internal Server Error"});
 		}
 		else
 		{
@@ -21,12 +21,12 @@ router.get('/:id', async (req, res, next)=>{
 			db.collection('user').findOne({accessToken : req.params.id}, (error, user)=>{
 				if(error)
 				{
-					res.status(200).json({"msg" : "Error while opening profile "});
+					res.status(500).json({"msg" : "Error while opening profile "});
 				}
 				else
 				{
 					if(user == null)
-						res.status(200).json({"msg" : "User Profile Deleted/Missing!!!!!"});
+						res.status(500).json({"msg" : "User Profile Deleted/Missing!!!!!"});
 					else
 					{
 						var threads = user.thread;

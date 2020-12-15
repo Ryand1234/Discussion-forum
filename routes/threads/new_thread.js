@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const mongo = require('mongodb');
+const { MongoClient } = require('mongodb');
 const {check, validationResult} = require('express-validator');
 const objectId = require('mongodb').ObjectId;
 
@@ -21,7 +21,7 @@ async (req, res, next)=>{
 		if(!errors.isEmpty())
 		{
 			var errors_array = errors.array();
-			res.status(200).json({errors_array});
+			res.status(500).json({errors_array});
 		}
 		else
 		{
@@ -37,10 +37,10 @@ async (req, res, next)=>{
 			nthread.dislikes = 0;
 
 
-			mongo.MongoClient.connect(MONGO_URI, (error, client)=>{
+			MongoClient.connect(MONGO_URI, (error, client)=>{
 				if(error)
 				{
-					res.status(200).json({"msg" : "Internal Server Error"});
+					res.status(500).json({"msg" : "Internal Server Error"});
 				}
 				else
 				{
@@ -50,18 +50,16 @@ async (req, res, next)=>{
 
 						if(err)
 						{
-							res.status(200).json({"msg" : "Interal Server Error"});
+							res.status(500).json({"msg" : "Interal Server Error"});
 						}
 						else
 						{
-							console.log("THERAD: ",thread)
 							db.collection('user').findOne({_id : new objectId(req.session.accessToken)}, (errorUser, user)=>{
 							
 								if(errorUser)
-									res.status(200).json({"msg" : "Internal Server Error"});
+									res.status(500).json({"msg" : "Internal Server Error"});
 	
 								var nhistory;
-								//user.thread.push(nthread);
 								if(user.thread == undefined)
 								{
 									 nhistory = [thread.ops[0]._id];
@@ -80,7 +78,7 @@ async (req, res, next)=>{
 
 								db.collection('user').updateOne({_id : new objectId(req.session.accessToken)}, query, (errorUp, User)=>{
 									if(errorUp)
-										res.status(200).json({"msg" : "Internal Server Error"});
+										res.status(500).json({"msg" : "Internal Server Error"});
 									res.status(200).json({"msg" : "Thread Created"});
 								});
 							});
@@ -93,7 +91,7 @@ async (req, res, next)=>{
 	}
 
 	else
-		res.status(200).json({"msg" : "Please login to create a thread"});
+		res.status(500).json({"msg" : "Please login to create a thread"});
 });
 
 module.exports = router;

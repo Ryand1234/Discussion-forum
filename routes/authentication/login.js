@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const mongo = require('mongodb');
+const { MongoClient } = require('mongodb');
 const session = require('express-session');
 const {check, validationResult} = require('express-validator');
 
@@ -20,10 +20,10 @@ async (req, res, next)=>{
 	}
 	else
 	{
-		mongo.MongoClient.connect(MONGO_URI, (err, client)=>{
+		MongoClient.connect(MONGO_URI, (err, client)=>{
 			if(err)
 			{
-				res.status(200).json({"msg" : "Internal Server Error"})
+				res.status(500).json({"msg" : "Internal Server Error"})
 			}
 			else
 			{
@@ -45,7 +45,7 @@ async (req, res, next)=>{
 							res.status(200).json({"msg" : "User Logged In"});
 						}
 						else
-							res.status(200).json({"msg" : "Email/Password incorrect"});
+							res.status(500).json({"msg" : "Email/Password incorrect"});
 					}
 				});
 			}
