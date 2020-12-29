@@ -1,6 +1,6 @@
 const router = require('express').Router();
+const jwt = require('jsonwebtoken')
 const { MongoClient } = require('mongodb');
-const session = require('express-session');
 const {check, validationResult} = require('express-validator');
 
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
@@ -32,17 +32,22 @@ async (req, res, next)=>{
 			
 					if(error)
 					{
-						res.status(200).json({"msg" : "Email/Password incorrect"});
+						res.status(500).json({"msg" : "Email/Password incorrect"});
 					}
 					else
 					{
 						if(user != null)
 						{
-							req.session.accessToken = user._id;
-							req.session.threadToken = user.accessToken;
-							req.session.user = user.name;
-				
-							res.status(200).json({"msg" : "User Logged In"});
+							const user = {
+								accessToken: user._id,
+								threadToken: user.accessToken,
+								name: user.name
+							}
+
+							const token = jwt.sign(user, process.env.JWT_SECRET)
+							console.log("T: ", token)
+
+							res.status(200).json({"msg" : "User Logged In", token: token});
 						}
 						else
 							res.status(500).json({"msg" : "Email/Password incorrect"});
