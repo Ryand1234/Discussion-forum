@@ -13,7 +13,7 @@ const app = express()
 
 app.use(express.json())
 app.use(logger('dev'))
-app.use(bodyparser.json())
+app.use(bodyParser.json())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
@@ -54,7 +54,6 @@ app.get('/*', function(req, res) {
 app.use('/api/user/register', registerRoute)
 app.use('/api/user/login', loginRoute)
 app.use('/api/user/profile', profileRoute)
-app.use('/api/user/logout', logoutRoute)
 app.use('/api/user/', pubProfileRoute)
 app.use('/api/user/update', updateRoute)
 

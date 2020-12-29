@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const { MongoClient, ObjectId } = require('mongodb')
 const {check, validationResult} = require('express-validator')
-
+const authenticate = require('../../middleware/middleware')
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000"
 
 router.post('/',

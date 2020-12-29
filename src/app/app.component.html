@@ -15,9 +15,8 @@
         Home
       </a>
 
-      <a class="navbar-item" href="https://github.com/Ryand1234/To-Do-app#readme">
-        Documentation
-      </a>
+      
+      <a class="navbar-item" routerLink="/thread/new">New Thread</a>
 
       <a class="navbar-item" routerLink="/profile">Profile</a>
 
@@ -27,12 +26,13 @@
         </a>
 
         <div class="navbar-dropdown">
-        	<a class="navbar-item" routerLink="/thread/new">New Thread</a>
-			<a class="navbar-item" routerLink="/search">Search</a>
-			<a class="navbar-item" routerLink="/logout">Logout</a>
-			<a class="navbar-item">
-			Contact
-			</a>
+        <a class="navbar-item" href="https://github.com/Ryand1234/Discussion-forum#readme">
+        Documentation
+        </a>	
+  			<a class="navbar-item" routerLink="/search">Search</a>
+  			<a class="navbar-item">
+  			Contact
+  			</a>
 			<hr class="navbar-divider">
 			<a class="navbar-item">
 			Report an issue
@@ -44,11 +44,14 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <button class="button is-primary" routerLink="/register">
+          <button class="button is-primary" *ngIf="loggedIn == false"  routerLink="/register">
             <strong>Sign up</strong>
           </button>
-          <button class="button is-light" routerLink="/login">
+          <button class="button is-light" *ngIf="loggedIn == false" routerLink="/login">
             Log in
+          </button> 
+          <button class="button is-light" *ngIf="loggedIn" routerLink="/logout">
+            Log Out
           </button> 
         </div>
       </div>

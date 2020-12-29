@@ -24,12 +24,12 @@
 
 <mat-card class="ucomment">
 	<p style="color: grey; font-size: 20px;">Enter your comment</p>
-	<p *ngIf="(msg)" style="color: white; font-size: 20px;">{{msg.msg}}</p>
+	<p *ngIf="(msg)" style="color: white; font-size: 20px;">{{msg}}</p>
 	<mat-card-content>
-				<form (ngSubmit)="onSubmit()" [formGroup]="post">
-					<textarea matInput formControlName="txt" placeholder="Your Comment" class="txtarea"></textarea> 
-					<button class="post">Post</button>
-				</form>
+		<form (ngSubmit)="onSubmit()" [formGroup]="post">
+			<textarea matInput formControlName="txt" placeholder="Your Comment" class="txtarea"></textarea> 
+			<button class="post">Post</button>
+		</form>
 	</mat-card-content>
 </mat-card>
 

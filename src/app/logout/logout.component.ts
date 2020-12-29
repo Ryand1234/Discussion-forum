@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { LogoutService } from './logout.service';
-
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-logout',
   templateUrl: './logout.component.html',
   styleUrls: ['./logout.component.css']
 })
-export class LogoutComponent {
+export class LogoutComponent implements OnInit{
 
-	constructor(private service : LogoutService) { }
+	constructor(private service : LogoutService,
+			private router: Router
+		) { }
 
-	msg: any;
-	onSubmit() {
-		this.service.logout().subscribe((result: any)=>{
-		this.msg = result}, (err)=>{this.msg = err});
+	ngOnInit(): void {
+		localStorage.removeItem('token')
+		this.router.navigate(['/home'])
 	}
+
 }

@@ -11,13 +11,15 @@ export class ProfileComponent implements OnInit {
 	userinfo : any;
   constructor(private service : ProfileService) { }
 
-  		msg: any;
+  loggedIn = false
 
   ngOnInit(){
-
-	this.service.getProfile().subscribe((result)=>{ this.userinfo = result}, (error)=>{
-  this.msg = error
-  });
+    if(localStorage.getItem('token') != undefined) {
+      this.loggedIn = true
+    }
+	  else {
+      this.service.getProfile().subscribe((result)=>{ this.userinfo = result});
+    }
 	
 	}
 

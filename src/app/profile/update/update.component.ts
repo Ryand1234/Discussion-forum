@@ -8,16 +8,23 @@ import { UpdateService } from './update.service';
   templateUrl: './update.component.html',
   styleUrls: ['./update.component.css']
 })
-export class UpdateComponent {
+export class UpdateComponent implements OnInit {
 
 	user = new FormGroup({
 	name : new FormControl(''),
 	username : new FormControl(''),
 	mobile : new FormControl('')
 	});
+	loggedIn = false
+	msg: any
   constructor(private service : UpdateService) { }
 
-	msg: any;
+  ngOnInit(): void {
+  	if(localStorage.getItem('token') != undefined) {
+  		this.loggedIn = true
+  	}
+  }
+
   onSubmit() {
 	
 //	console.log("User: ",this.user);	
@@ -35,6 +42,6 @@ export class UpdateComponent {
 
 		console.log("user: ",userinfo);
 		this.service.register(userinfo).subscribe((result:any)=>{
-		this.msg = result;}, (err)=>{this.msg = err;});
+		this.msg = result.msg;}, (err)=>{this.msg = err.msg;});
 	  }
 }

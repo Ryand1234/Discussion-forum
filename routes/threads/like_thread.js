@@ -36,7 +36,7 @@ router.post('/:id', authenticate, async (req, res, next)=>{
 
 					db.collection('thread').findOne({_id : new ObjectId(req.params.id)}, (Error, updThread)=>{
 						if(Error)
-						        res.status(200).json({"msg" : "Internal Server Error"});
+						        res.status(500).json({"msg" : "Internal Server Error"});
 						else{
 							res.status(200).json(updThread);
 						}

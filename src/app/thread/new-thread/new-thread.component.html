@@ -1,8 +1,8 @@
 <mat-card class="thread-new-main">
 	<h3 class="thread-new-head">New Thread</h3>
 	<mat-card-content class="thread-new-create">
-		<p *ngIf="(msg)">{{msg.msg}}</p>
-		<p *ngIf="(msgError)">{{msgError.msg}}</p>
+		<p *ngIf="(msg)">{{msg}}</p>
+		<p *ngIf="(msgError)">{{msgError}}</p>
 		<form (ngSubmit)="onSubmit()" [formGroup]="thread">
 			<mat-form-field>
 				<input matInput formControlName="topic" placeholder="Topic" type="text">

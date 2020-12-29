@@ -19,7 +19,10 @@ export class SingleThreadComponent implements OnInit {
 
 	thread: any;
 	msg: any;
-	
+	output: any;
+	token: string
+	loggedIn = false
+
 	post = new FormGroup({
 	txt : new FormControl('')
 	});
@@ -30,72 +33,82 @@ export class SingleThreadComponent implements OnInit {
 		    private postService : PostService,
 		    private likdisService : LikeDislikeService) { }
 
-	token: string;
   	ngOnInit(): void {
+  		if(localStorage.getItem('token') != undefined) {
+			this.loggedIn = true
+		} else {
+			this.msg = 'Please Login to Continue!!!!!!'
+		}
 		var url = this.router.url;
 		this.token = url.split('/')[2];
 
 		this.service.getThread(this.token).subscribe((result: any)=>{
 		
 			this.thread = result;
-		this.history = this.thread.history;
-		},
+			this.history = this.thread.history;
+			},
 		(err)=>{
-			this.msg = err
-			});
+			this.msg = err.msg
+		});
 		
 
 	}
 
-	output: any;
 
 	onSubmit() {
 
-	var data = {
-	  "txt" : this.post.value.txt
-	}
-	this.postService.comment(this.token, data).subscribe((result:any)=>{
-		this.output = result;		
-		if(this.output.msg == undefined)
+		if(this.loggedIn)
 		{
-			this.thread = result;
-			this.history = this.thread.history;	
+			var data = {
+		  		"txt" : this.post.value.txt
+			}
+			this.postService.comment(this.token, data).subscribe((result:any)=>{
+				this.output = result;		
+				if(this.output.msg == undefined)
+				{
+					this.thread = result;
+					this.history = this.thread.history;	
+				}
+				else
+					this.msg = result;
+			}, (err)=>{this.msg = err.msg;});
+
 		}
-		else
-			this.msg = result;
-	}, (err)=>{this.msg = err;});
 
 	}
 
-	
 	like(id: string){
-		this.likdisService.like(id).subscribe((result : any)=>{
-		this.output = result;
-		if(this.output.msg == undefined)
+		if(this.loggedIn)
 		{
-			this.thread = result;
-			this.history = this.thread.history;
+			this.likdisService.like(id).subscribe((result : any)=>{
+			this.output = result;
+			if(this.output.msg == undefined)
+			{
+				this.thread = result;
+				this.history = this.thread.history;
+			}
+			else
+				this.msg = result;
+			},(err) => {this.msg = err.msg;});
 		}
-		else
-			this.msg = result;
-		},(err) => {this.msg = err;});
-
 	}	
 
 	
 	dislike(id : string){
 
-		this.likdisService.dislike(id).subscribe((result : any)=>{
+		if(this.loggedIn)
+		{
+			this.likdisService.dislike(id).subscribe((result : any)=>{
                 this.output = result;
                 if(this.output.msg == undefined)
                 {
                         this.thread = result;
-			this.history = this.thread.history;
-			console.log("TH: ",this.thread);
-                }
-                else
-                        this.msg = result;
-                },(err) => {this.msg = err;});
+						this.history = this.thread.history;
+				}
+				else
+                	this.msg = result;
+            },(err) => {this.msg = err.msg;});
+		}
 	}
 
 }

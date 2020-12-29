@@ -1,8 +1,7 @@
 
-<mat-card class="profile">
+<mat-card class="profile" *ngIf="(loggedIn == true)">
 	<h3>Profile Information</h3>
-	<h4 *ngIf=(userinfo.msg)>{{userinfo.msg}}</h4>
-	<mat-card-content class="profile-detail" *ngIf="(userinfo.name != null)">
+	<mat-card-content class="profile-detail">
 		<table class="user-details">
 			<tr>
 				<th>Index</th>
