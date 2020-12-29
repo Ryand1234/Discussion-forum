@@ -5,7 +5,7 @@ const authenticate = async (req, res, next) =>{
 	const token = authHeader && authHeader.split(' ')[1]
 	if(token == null) {
 		req.status(501)
-		next();
+		next()
 	}
 
 	jwt.verify(token, process.env.JWT_SECRET, (err, user)=>{
@@ -14,7 +14,7 @@ const authenticate = async (req, res, next) =>{
 			next()
 		}
 
-		req.user = user;
+		req.user = user
 		next()
 	}) 
 

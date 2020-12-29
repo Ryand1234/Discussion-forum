@@ -1,6 +1,5 @@
-const router = require('express').Router();
-const { MongoClient } = require('mongodb');
-const objectId = require('mongodb').ObjectId;
+const router = require('express').Router()
+const { MongoClient, ObjectId } = require('mongodb')
 
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
 
@@ -9,7 +8,7 @@ router.post('/:id', (req, res, next)=>{
 	const id = req.params.id;
 
 	MongoClient.connect(MONGO_URI, (error, client)=>{
-	
+
 		if(error)
 		{
 			res.status(500).json({"msg" : "Internal Server Error"});
@@ -18,10 +17,8 @@ router.post('/:id', (req, res, next)=>{
 		{
 			const db = client.db('forum');
 
-			var ObjectId = new objectId(id);
+			db.collection('thread').findOne({_id : new ObjectId(id)}, (err, thread)=>{
 
-			db.collection('thread').findOne({_id : ObjectId}, (err, thread)=>{
-			
 				if(err)
 				{
 					res.status(500).json({"msg" : "Cannot find requested thread"});

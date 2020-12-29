@@ -6,7 +6,7 @@ const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
 router.get('/', async (req, res, next)=>{
 
 	MongoClient.connect(MONGO_URI, (error, client)=>{
-	
+
 		if(error)
 		{
 			res.status(500).json({"msg" : "Internal Server Error"});
