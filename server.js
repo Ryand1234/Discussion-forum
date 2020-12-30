@@ -45,10 +45,6 @@ const dislikeRoute = require('./routes/threads/dislike_thread')
 const categoryRoute = require('./routes/search/thread_by_category')
 
 
-//For Other Paths
-app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname, '/dist/frontend/index.html'));
-});
 
 //Authentication Routes
 app.use('/api/user/register', registerRoute)
@@ -70,6 +66,11 @@ app.use('/api/thread/dislike/', dislikeRoute)
 //Search Routes
 app.use('/api/search/', categoryRoute)
 
+
+//For Other Paths
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, '/dist/frontend/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
