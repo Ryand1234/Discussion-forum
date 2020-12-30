@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const mongo = require('mongodb');
 
-router.post('/', async (req, res, next)=>{
+router.get('/', async (req, res, next)=>{
 
 	mongo.MongoClient.connect('mongodb://localhost:5000', (error, client)=>{
 	

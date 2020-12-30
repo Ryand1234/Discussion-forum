@@ -1,8 +1,20 @@
-
-<mat-card class="profile">
+<div [ngClass]="{'is-active': !loggedIn, 'is-clipped': loggedIn}" class="modal is-clipped" >
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          Please Login to Continue!!!!
+          <button (click)="login()" class="is-large" aria-label="close">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button (click)="login()" class="modal-close is-large" aria-label="close"></button>
+</div>
+<mat-card class="profile" *ngIf="(loggedIn == true)">
 	<h3>Profile Information</h3>
-	<h4 *ngIf=(userinfo.msg)>{{userinfo.msg}}</h4>
-	<mat-card-content class="profile-detail" *ngIf="(userinfo.name != null)">
+	<mat-card-content class="profile-detail">
 		<table class="user-details">
 			<tr>
 				<th>Index</th>

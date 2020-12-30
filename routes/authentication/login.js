@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const mongo = require('mongodb');
-const session = require('express-session');
+const jwt = require('jsonwebtoken')
+const { MongoClient } = require('mongodb');
 const {check, validationResult} = require('express-validator');
 
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
@@ -20,10 +20,10 @@ async (req, res, next)=>{
 	}
 	else
 	{
-		mongo.MongoClient.connect(MONGO_URI, (err, client)=>{
+		MongoClient.connect(MONGO_URI, (err, client)=>{
 			if(err)
 			{
-				res.status(200).json({"msg" : "Internal Server Error"})
+				res.status(500).json({"msg" : "Internal Server Error"})
 			}
 			else
 			{
@@ -32,21 +32,24 @@ async (req, res, next)=>{
 			
 					if(error)
 					{
-						//console.log("Error: ",error);
-						res.status(200).json({"msg" : "Email/Password incorrect"});
+						res.status(500).json({"msg" : "Email/Password incorrect"});
 					}
 					else
 					{
 						if(user != null)
 						{
-							req.session.accessToken = user._id;
-							req.session.threadToken = user.accessToken;
-							req.session.user = user.name;
-				
-							res.status(200).json({"msg" : "User Logged In"});
+							const Cuser = {
+								accessToken: user._id,
+								threadToken: user.accessToken,
+								name: user.name
+							}
+
+							const token = jwt.sign(Cuser, process.env.JWT_SECRET)
+
+							res.status(200).json({"msg" : "User Logged In", token: token});
 						}
 						else
-							res.status(200).json({"msg" : "Email/Password incorrect"});
+							res.status(500).json({"msg" : "Email/Password incorrect"});
 					}
 				});
 			}

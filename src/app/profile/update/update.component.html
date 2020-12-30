@@ -1,6 +1,6 @@
-<mat-card class="update-profile">
+<mat-card class="update-profile" *ngIf="(loggedIn == true)">
 	<h3 class="head"> Update Profile </h3>
-	<p *ngIf="(msg)">{{msg.msg}}</p>
+	<p *ngIf="(msg)">{{msg}}</p>
 	<mat-card-content>
 		<div class="details">
 			<form (ngSubmit)="onSubmit()" [formGroup]="user">

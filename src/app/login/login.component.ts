@@ -1,22 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LoginService } from './login.service';
-
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
 	info = new FormGroup({
 	email : new FormControl(''),
 	passwd : new FormControl('')
 	});
 
-  constructor(private service : LoginService) { }
+  constructor(private service : LoginService,
+  		private router: Router
+  	) { }
 
-	msg: any;
+  	ngOnInit(): void {
+  		if(localStorage.getItem('token') != undefined) {
+  			this.router.navigate(['/home'])
+  		}
+  	}
+
+	msg: string;
 
   	onSubmit() {
 	//	console.log("data: ",this.info);
@@ -26,7 +34,10 @@ export class LoginComponent {
 		};
 
 		this.service.login(login).subscribe((result: any)=>{
-		this.msg = result;}, (err)=>{ this.msg = err});
+			this.msg = result.msg
+			localStorage.setItem('token', result.token)
+			window.location.reload();
+		}, (err)=>{ this.msg = err.msg});
 	//	console.log("Error: ",this.msg);
 	}
 

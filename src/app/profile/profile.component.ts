@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from './profile.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-profile',
@@ -9,17 +10,23 @@ import { ProfileService } from './profile.service'
 export class ProfileComponent implements OnInit {
 	
 	userinfo : any;
-  constructor(private service : ProfileService) { }
+  constructor(private service : ProfileService,
+      private router: Router
+    ) { }
 
-  		msg: any;
+  loggedIn: boolean = false
 
   ngOnInit(){
-
-	this.service.getProfile().subscribe((result)=>{ this.userinfo = result}, (error)=>{
-  this.msg = error
-  });
+    if(localStorage.getItem('token') != undefined) {
+      this.loggedIn = true
+      this.service.getProfile().subscribe((result)=>{ this.userinfo = result});
+    }
 	
 	}
+
+  login() {
+    this.router.navigate(['/login'])
+  }
 
 
 }

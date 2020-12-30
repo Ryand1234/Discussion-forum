@@ -1,15 +1,15 @@
 const router = require('express').Router();
-const mongo = require('mongodb');
+const { MongoClient } = require('mongodb');
 
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000";
 
 router.get('/', async (req, res, next)=>{
 
-	mongo.MongoClient.connect(MONGO_URI, (error, client)=>{
-	
+	MongoClient.connect(MONGO_URI, (error, client)=>{
+
 		if(error)
 		{
-			res.status(200).json({"msg" : "Internal Server Error"});
+			res.status(500).json({"msg" : "Internal Server Error"});
 		}
 		else
 		{
@@ -19,7 +19,7 @@ router.get('/', async (req, res, next)=>{
 			
 				if(err)
 				{
-					res.status(200).json({"msg" : "Internal Server Error"});
+					res.status(500).json({"msg" : "Internal Server Error"});
 				}
 				else
 				{

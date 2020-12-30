@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -13,13 +13,16 @@ export class LikeDislikeService {
 
 	constructor(private http : HttpClient) { }
 
+
+	httpOptions = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+
 	like(id: string){
 		var nlike_url = this.like_url + id;
-		return this.http.get(nlike_url);
+		return this.http.post(nlike_url, { headers: this.httpOptions, responseType: 'json'});
 	}
 
 	dislike(id: string){
 		var ndislike_url = this.dislike_url + id;
-		return this.http.get(ndislike_url)
+		return this.http.post(ndislike_url, { headers: this.httpOptions, responseType: 'json'})
 	}	
 }

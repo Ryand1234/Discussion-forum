@@ -1,13 +1,62 @@
-<h1 class="forum-head"> Discussion Forum </h1>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img [src]=img_url alt="A Graph database powered To-Do app" />
+    </a>
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true">new</span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" routerLink="/home">
+        Home
+      </a>
 
-<mat-toolbar class="toolbar">
-	<button mat-button routerLink="/profile">Profile</button>
-	<button mat-button routerLink="/login">Login</button>
-	<button mat-button routerLink="/register">Register</button>
-	<button mat-button routerLink="/home">thread</button>
-	<button mat-button routerLink="/thread/new">New Thread</button>
-	<button mat-button routerLink="/search">Search</button>
-	<button mat-button routerLink="/logout">Logout</button>
-</mat-toolbar>
+      
+      <a class="navbar-item" routerLink="/thread/new">New Thread</a>
+
+      <a class="navbar-item" routerLink="/profile">Profile</a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More
+        </a>
+
+        <div class="navbar-dropdown">
+        <a class="navbar-item" href="https://github.com/Ryand1234/Discussion-forum#readme">
+        Documentation
+        </a>	
+  			<a class="navbar-item" routerLink="/search">Search</a>
+  			<a class="navbar-item">
+  			Contact
+  			</a>
+			<hr class="navbar-divider">
+			<a class="navbar-item">
+			Report an issue
+			</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <button class="button is-primary" *ngIf="loggedIn == false"  routerLink="/register">
+            <strong>Sign up</strong>
+          </button>
+          <button class="button is-light" *ngIf="loggedIn == false" routerLink="/login">
+            Log in
+          </button> 
+          <button class="button is-light" *ngIf="loggedIn" routerLink="/logout">
+            Log Out
+          </button> 
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
 
 <router-outlet></router-outlet>
