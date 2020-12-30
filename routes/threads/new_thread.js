@@ -73,7 +73,7 @@ async (req, res, next)=>{
 								}
 							}
 
-							db.collection('user').updateOne({_id : new ObjectId(req.session.accessToken)}, query, (errorUp, User)=>{
+							db.collection('user').updateOne({_id : new ObjectId(req.user.accessToken)}, query, (errorUp, User)=>{
 								if(errorUp)
 									res.status(500).json({"msg" : "Internal Server Error"});
 								res.status(200).json({"msg" : "Thread Created"});

@@ -38,14 +38,13 @@ async (req, res, next)=>{
 					{
 						if(user != null)
 						{
-							const user = {
+							const Cuser = {
 								accessToken: user._id,
 								threadToken: user.accessToken,
 								name: user.name
 							}
 
-							const token = jwt.sign(user, process.env.JWT_SECRET)
-							console.log("T: ", token)
+							const token = jwt.sign(Cuser, process.env.JWT_SECRET)
 
 							res.status(200).json({"msg" : "User Logged In", token: token});
 						}

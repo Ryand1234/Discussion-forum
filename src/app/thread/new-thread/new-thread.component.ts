@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewService } from './new.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-new-thread',
   templateUrl: './new-thread.component.html',
@@ -14,12 +15,17 @@ export class NewThreadComponent implements OnInit {
 	thread : new FormControl('')
 	});
 
-	loggedIn = false
+	loggedIn: boolean = false
 	msg: string
 	msgError: string
 
-	constructor(private service : NewService) { }
+	constructor(private service : NewService,
+			private router: Router
+		) { }
 
+	login() {
+		this.router.navigate(['/home'])
+	}
 
 	ngOnInit(): void {
 		if(localStorage.getItem('token') != undefined) {

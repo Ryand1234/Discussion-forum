@@ -1,9 +1,8 @@
 const router = require('express').Router()
 const { MongoClient, ObjectId } = require('mongodb')
-const authenticate = require('../../middleware/middleware')
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:5000"
 
-router.post('/:id', authenticate, async (req, res, next)=>{
+router.post('/:id', async (req, res, next)=>{
 
 	MongoClient.connect(MONGO_URI, (error, client)=>{
 		

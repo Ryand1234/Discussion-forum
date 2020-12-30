@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit{
   		}
   	}
 
-	msg: any;
+	msg: string;
 
   	onSubmit() {
 	//	console.log("data: ",this.info);
@@ -34,9 +34,10 @@ export class LoginComponent implements OnInit{
 		};
 
 		this.service.login(login).subscribe((result: any)=>{
-			this.msg = result;
+			this.msg = result.msg
+			localStorage.setItem('token', result.token)
 			window.location.reload();
-		}, (err)=>{ this.msg = err});
+		}, (err)=>{ this.msg = err.msg});
 	//	console.log("Error: ",this.msg);
 	}
 

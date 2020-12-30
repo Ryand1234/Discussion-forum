@@ -9,7 +9,11 @@ export class ProfileService {
 	private url = '/api/user/profile';
   constructor(private  http : HttpClient) { }
 
-	httpOptions = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+  private token: string = 'Bearer ' + localStorage.getItem('token')
+
+	httpOptions = new HttpHeaders({'Content-Type':'application/json; charset=utf-8',
+			'authorization': this.token
+	});
 
 	getProfile(){
 		return this.http.get(this.url, { headers: this.httpOptions, responseType: 'json'});

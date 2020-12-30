@@ -1,6 +1,6 @@
 <mat-card class="login-main">
 	<h3 class="head">Log In</h3>
-	<p *ngIf="(msg)"> {{msg.msg}}</p>
+	<p *ngIf="(msg)"> {{msg}}</p>
 	<mat-card-content>
 		<div class="details">
 			<form (ngSubmit)="onSubmit()" [formGroup]="info">
