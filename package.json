@@ -14,7 +14,7 @@
   "dependencies": {
     "@angular/animations": "10.2.4",
     "@angular/cdk": "10.2.7",
-    "@angular/cli": "10.2.1",
+    "@angular/cli": "10.2.2",
     "@angular/common": "10.2.4",
     "@angular/compiler": "10.2.4",
     "@angular/compiler-cli": "10.2.4",
@@ -42,7 +42,7 @@
     "zone.js": "0.11.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "0.1100.6",
+    "@angular-devkit/build-angular": "0.1101.4",
     "@angular/language-service": "10.2.4",
     "@types/jasmine": "3.5.11",
     "@types/jasminewd2": "2.0.8",
