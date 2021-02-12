@@ -38,7 +38,7 @@
     "mongoose": "5.11.15",
     "morgan": "1.10.0",
     "rxjs": "6.6.3",
-    "tslib": "1.13.0",
+    "tslib": "1.14.1",
     "zone.js": "0.11.3"
   },
   "devDependencies": {
