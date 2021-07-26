@@ -17,6 +17,9 @@ export class AppComponent implements OnInit {
   		this.loggedIn = true
   	}
   }
+  changeLogin() {
+    this.loggedIn = false
+  }
   change() {
     this.toggle = !this.toggle
   }

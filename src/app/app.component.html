@@ -18,7 +18,7 @@
 
       <a class="navbar-item" routerLink="/profile">Profile</a>
 
-      <div class="navbar-item has-dropdown">
+      <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           More
         </a>
@@ -48,7 +48,7 @@
           <button class="button is-light" *ngIf="loggedIn == false" routerLink="/login">
             Log in
           </button> 
-          <button class="button is-light" *ngIf="loggedIn" routerLink="/logout">
+          <button class="button is-light" *ngIf="loggedIn" (click)="changeLogin()" routerLink="/logout">
             Log Out
           </button> 
         </div>
