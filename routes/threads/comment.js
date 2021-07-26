@@ -16,7 +16,7 @@ async (req, res, next)=>{
 		res.status(500).json({"msg" : "Text Cannot be empty"});
 	else
 	{
-		var token = req.user.accessToken
+		var token = req.body.token;
 		MongoClient.connect(MONGO_URI, (error, client)=>{
 
 			if(error)
@@ -26,34 +26,38 @@ async (req, res, next)=>{
 
 			db.collection('thread').findOne({_id : new ObjectId(token)}, (err, thread)=>{
 
-				var nhistory = {
-					user : req.user.name,
-					comment : req.body.txt,
-					userToken : req.user.threadToken
-				};
-
-				var new_history = thread.history;
-
-				new_history.push(nhistory);
-
-				var query = {
-					$set : {
-						history : new_history
+				try{
+					var nhistory = {
+						user : req.user.name,
+						comment : req.body.txt,
+						userToken : req.user.threadToken
+					};
+	
+					var new_history = thread? thread.history: [];
+	
+					new_history.push(nhistory);
+	
+					var query = {
+						$set : {
+							history : new_history
+						}
 					}
-				}
-
-				db.collection('thread').updateOne({_id : new ObjectId(token)}, query, (errUp, update)=>{
-				
-					if(errUp)
-						res.status(500).json({"msg" : "Internal Server Error"});
-
-					db.collection('thread').findOne({_id : new ObjectId(token)}, (errLas, new_thread)=>{
-						if(errLas)
+	
+					db.collection('thread').updateOne({_id : ObjectId(token)}, query, (errUp, update)=>{
+					
+						if(errUp)
 							res.status(500).json({"msg" : "Internal Server Error"});
-
-						res.status(200).json(new_thread);
+	
+						db.collection('thread').findOne({_id : ObjectId(token)}, (errLas, new_thread)=>{
+							if(errLas)
+								res.status(500).json({"msg" : "Internal Server Error"});
+	
+							res.status(200).json(new_thread);
+						});
 					});
-				});
+				} catch (e) {
+					res.status(500).json({"msg": "Server Error"})
+				}
 			});
 		});
 	}

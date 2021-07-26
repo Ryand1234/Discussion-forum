@@ -60,7 +60,8 @@ export class SingleThreadComponent implements OnInit {
 		if(this.loggedIn)
 		{
 			var data = {
-		  		"txt" : this.post.value.txt
+		  		txt : this.post.value.txt,
+				token: this.token
 			}
 			this.postService.comment(this.token, data).subscribe((result:any)=>{
 				this.output = result;		
