@@ -9,11 +9,15 @@ export class AppComponent implements OnInit {
   title = 'Discussion Forum';
   img_url = 'assets/images/logo.jpg'
   loggedIn = false
+  toggle = false
 
   ngOnInit(): void {
   	if(localStorage.getItem('token') != undefined)
   	{
   		this.loggedIn = true
   	}
+  }
+  change() {
+    this.toggle = !this.toggle
   }
 }

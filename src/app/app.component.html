@@ -3,24 +3,22 @@
     <a class="navbar-item" href="/">
       <img [src]=img_url alt="A Graph database powered To-Do app" />
     </a>
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true">new</span>
+    <a role="button" (click) = "change()" [class.is-active]="toggle == true" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
-  <div id="navbarBasicExample" class="navbar-menu">
+  <div [class.is-active]="toggle == true" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" routerLink="/home">
         Home
       </a>
-
-      
       <a class="navbar-item" routerLink="/thread/new">New Thread</a>
 
       <a class="navbar-item" routerLink="/profile">Profile</a>
 
-      <div class="navbar-item has-dropdown is-hoverable">
+      <div class="navbar-item has-dropdown">
         <a class="navbar-link">
           More
         </a>
@@ -33,10 +31,10 @@
   			<a class="navbar-item">
   			Contact
   			</a>
-			<hr class="navbar-divider">
-			<a class="navbar-item">
-			Report an issue
-			</a>
+        <hr class="navbar-divider">
+        <a class="navbar-item">
+        Report an issue
+        </a>
         </div>
       </div>
     </div>
