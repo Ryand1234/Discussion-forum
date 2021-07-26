@@ -46,7 +46,6 @@ export class NewThreadComponent implements OnInit {
 			this.service.create(new_thread).subscribe((result: any)=>{
 			this.msg = result.msg;}, (err)=>{ this.msgError = err.msg});
 		}
-	//console.log("msg: ",this.msgError);
 	}
 
 }
