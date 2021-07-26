@@ -22,6 +22,7 @@ export class SingleThreadComponent implements OnInit {
 	output: any;
 	token: string
 	loggedIn = false
+	initCode: string = ""
 
 	post = new FormGroup({
 	txt : new FormControl('')
@@ -41,22 +42,16 @@ export class SingleThreadComponent implements OnInit {
 		}
 		var url = this.router.url;
 		this.token = url.split('/')[2];
-
 		this.service.getThread(this.token).subscribe((result: any)=>{
-		
 			this.thread = result;
 			this.history = this.thread.history;
 			},
 		(err)=>{
 			this.msg = err.msg
 		});
-		
-
 	}
 
-
 	onSubmit() {
-
 		if(this.loggedIn)
 		{
 			var data = {
@@ -73,9 +68,7 @@ export class SingleThreadComponent implements OnInit {
 				else
 					this.msg = result;
 			}, (err)=>{this.msg = err.msg;});
-
 		}
-
 	}
 
 	like(id: string){
@@ -93,10 +86,8 @@ export class SingleThreadComponent implements OnInit {
 			},(err) => {this.msg = err.msg;});
 		}
 	}	
-
 	
 	dislike(id : string){
-
 		if(this.loggedIn)
 		{
 			this.likdisService.dislike(id).subscribe((result : any)=>{
@@ -111,5 +102,4 @@ export class SingleThreadComponent implements OnInit {
             },(err) => {this.msg = err.msg;});
 		}
 	}
-
 }
