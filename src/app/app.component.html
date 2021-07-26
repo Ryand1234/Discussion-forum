@@ -3,20 +3,20 @@
     <a class="navbar-item" href="/">
       <img [src]=img_url alt="A Graph database powered To-Do app" />
     </a>
-    <a role="button" (click) = "change()" [class.is-active]="toggle == true" class="navbar-burger" aria-label="menu" aria-expanded="false">
+    <a role="button" (click) = "change()" [ngClass]="toggle? 'is-active': ''" class="navbar-burger" aria-label="menu" aria-expanded="false">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
-  <div [class.is-active]="toggle == true" class="navbar-menu">
+  <div [ngClass]="toggle? 'is-active': ''" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" routerLink="/home">
+      <a class="navbar-item" (click) = "change()" routerLink="/home">
         Home
       </a>
-      <a class="navbar-item" routerLink="/thread/new">New Thread</a>
+      <a class="navbar-item" (click) = "change()" routerLink="/thread/new">New Thread</a>
 
-      <a class="navbar-item" routerLink="/profile">Profile</a>
+      <a class="navbar-item" (click) = "change()" routerLink="/profile">Profile</a>
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
@@ -28,11 +28,11 @@
         Documentation
         </a>	
   			<a class="navbar-item" routerLink="/search">Search</a>
-  			<a class="navbar-item">
+  			<a class="navbar-item" href="mailto:riyandhiman14@gmail.com">
   			Contact
   			</a>
         <hr class="navbar-divider">
-        <a class="navbar-item">
+        <a class="navbar-item" href="https://github.com/Ryand1234/Discussion-forum/issues">
         Report an issue
         </a>
         </div>
@@ -42,13 +42,13 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <button class="button is-primary" *ngIf="loggedIn == false"  routerLink="/register">
+          <button class="button is-primary" (click) = "change()" *ngIf="loggedIn == false"  routerLink="/register">
             <strong>Sign up</strong>
           </button>
-          <button class="button is-light" *ngIf="loggedIn == false" routerLink="/login">
+          <button class="button is-light" (click) = "change()" *ngIf="loggedIn == false" routerLink="/login">
             Log in
           </button> 
-          <button class="button is-light" *ngIf="loggedIn" (click)="changeLogin()" routerLink="/logout">
+          <button class="button is-light" (click) = "change()" *ngIf="loggedIn" (click)="changeLogin()" routerLink="/logout">
             Log Out
           </button> 
         </div>
