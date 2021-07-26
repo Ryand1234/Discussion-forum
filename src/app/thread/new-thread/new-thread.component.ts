@@ -24,7 +24,7 @@ export class NewThreadComponent implements OnInit {
 		) { }
 
 	login() {
-		this.router.navigate(['/home'])
+		this.router.navigate(['/login'])
 	}
 
 	ngOnInit(): void {
