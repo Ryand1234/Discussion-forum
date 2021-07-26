@@ -10,12 +10,12 @@
 .comments {
 	margin: 10px;
 	border: 5px;
-	font-color : black;
+	color : black;
 	background-color: cyan;
 }
 
 .msg {
-	font-color : black;
+	color : black;
 	margin: 5px;
 	background-color: lightgreen;
 }
@@ -40,6 +40,9 @@ textarea {
 	background: 0;
 }
 
+.content {
+	font-size: 1.5rem;
+}
 
 .dis {
 	text-align: left;
@@ -53,6 +56,6 @@ a {
 	margin: 10px;
 	border: 5px;
 	background-color: black;
-	font-color : black;
+	color : black;
 	height: 200px;
 }
