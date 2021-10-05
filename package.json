@@ -34,7 +34,7 @@
     "express-validator": "6.12.2",
     "http-errors": "1.8.0",
     "jsonwebtoken": "8.5.1",
-    "mongodb": "3.7.1",
+    "mongodb": "3.7.2",
     "mongoose": "5.13.9",
     "morgan": "1.10.0",
     "rxjs": "6.6.7",
